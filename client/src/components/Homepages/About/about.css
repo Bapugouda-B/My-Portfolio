@@ -1,0 +1,11 @@
+.about{
+    margin: 20px;
+}
+
+.about-info p{
+    font-size: 16px;
+    color: rgb(48,47,47);
+    line-height: 1.5;
+    padding-bottom: 6px;
+}
+

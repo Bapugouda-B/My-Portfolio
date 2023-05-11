@@ -1,0 +1,116 @@
+.contact-form {
+  margin: 20px;
+}
+
+.contact-form-detail {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+}
+
+.contact-form-info form {
+  width: 100%;
+  box-shadow: 0 0 2px 1px rgb(11, 72, 92);
+  background: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form-info form input , .contact-form-info form textarea{
+    margin-bottom: 10px;
+    padding: 5px;
+    bottom: 1px solid rgb(40, 185, 185);
+}
+
+.contact-form-info button{
+    margin-top: 15px;
+    padding: 5px;
+    background: rgb(19,126,233);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: rgb(230,227, 227);
+    font-size: 16px;
+    letter-spacing: 0.1rem;
+    width: 160px;
+}
+
+
+.contact-form-info form p {
+  margin-bottom: 10px;
+  text-align: center;
+  color: green;
+  letter-spacing: 0.1rem;
+}
+
+.contact-form-info form label {
+  margin-bottom: 5px;
+  letter-spacing: 0.2rem;
+  color: #555;
+}
+
+.contact-info {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.contact-info h4 {
+  color: #555;
+  letter-spacing: 0.2rem;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+.contact-info img {
+  width: 100%;
+}
+
+button .load {
+  width: 100%;
+}
+
+button .load img {
+  width: 60px;
+  color: green;
+}
+
+@media screen and (min-width: 664px) {
+  .contact-form-detail {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+  }
+  .contact-form-info {
+    flex: 0 0 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-info {
+    flex: 1;
+    margin-bottom: 0;
+    align-self: center;
+  }
+}
+
+@media screen and (min-width: 864px) {
+    .contact-form-detail {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row-reverse;
+      justify-content: space-evenly;
+      
+    }
+    .contact-form-info {
+      flex: 0 0 400px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-info {
+      flex: 0 0 400px;
+     
+    }
+  }

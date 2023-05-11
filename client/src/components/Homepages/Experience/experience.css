@@ -1,0 +1,29 @@
+.experience{
+    margin: 20px;
+}
+
+.experience-info p{
+    background: rgb(17,115,145);
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 18px;
+    color: white;
+    letter-spacing: 0.1rem;
+    padding: 4px;
+}
+
+@media screen and (min-width: 860px) {
+    .experience-detail{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .experience-info{
+        flex: 0 0 calc(50% - 20px);
+        margin-right: 0;
+        margin-left: 0;
+        padding: 10px;
+        clip-path: polygon(0 0,100% 0,95% 100%,0% 100%);
+    }
+}
