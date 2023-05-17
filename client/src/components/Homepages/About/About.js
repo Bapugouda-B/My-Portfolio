@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./about.css";
+import { DataContext } from "../../context/globalContext.js";
 
 const About = () => {
+  const state = useContext(DataContext);
+  const [about] = state.about;
+  // console.log(about);
   return (
     <div className="about-container">
       <div className="about">
         <h2 className="title">About</h2>
-        <div className="about-info">
-          <p className="title">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus
-            qui officiis veniam quae pariatur nihil alias praesentium saepe ab
-            ullam, rerum debitis error earum libero modi similique
-            exercitationem temporibus labore. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Architecto animi alias labore facere
-            mollitia, possimus reprehenderit earum dolore voluptatum fugiat,
-            debitis incidunt neque voluptates, eum temporibus iste quas laborum
-            cum.
-          </p>
-        </div>
+        {about.map((item) => (
+          <div className="about-info" key={item._id}>
+            <p className="title">{item.about}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
