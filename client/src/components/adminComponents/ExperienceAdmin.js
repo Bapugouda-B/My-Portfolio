@@ -50,7 +50,7 @@ const ExperienceAdmin = () => {
   };
 
   // Delete Experience data
-  const deleteExperience = (id) => {
+  const deleteExperienceData = (id) => {
     axios
       .delete(`http://localhost:5000/experience/${id}`)
       .then((res) => {
@@ -63,6 +63,7 @@ const ExperienceAdmin = () => {
           setMessage("");
           setMessageCond(false);
         }, 500);
+
         return () => clearTimeout(timeout);
       })
       .catch((err) => console.log(err));
@@ -84,6 +85,7 @@ const ExperienceAdmin = () => {
           <button type="submit">Add Item</button>
         </form>
       </div>
+
       <div className="same-item">
         <div className="about-info">
           {experienceData.map((item) => (
@@ -94,21 +96,21 @@ const ExperienceAdmin = () => {
                 </Link>
                 <i
                   className="fas fa-trash"
-                  onClick={() => deleteExperience(item._id)}
+                  onClick={() => deleteExperienceData(item._id)}
                 ></i>
               </div>
               <div className="experience-info">
                 <p>{item.experience}</p>
               </div>
-              <h3
-                className={
-                  messageCond ? "new-delete item-delete-tab" : "item-delete-tab"
-                }
-              >
-                {message}
-              </h3>
             </div>
           ))}
+          <h3
+            className={
+              messageCond ? "new-delete item-delete-tab" : "item-delete-tab"
+            }
+          >
+            {message}
+          </h3>
         </div>
       </div>
     </div>

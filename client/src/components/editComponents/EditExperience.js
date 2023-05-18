@@ -12,7 +12,7 @@ const EditExperience = () => {
   // Getting the specific ID
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/education/${id}`)
+      .get(`http://localhost:5000/experience/${id}`)
       .then((res) => {
         setExperience(res.data.experience);
       })
@@ -25,7 +25,6 @@ const EditExperience = () => {
   };
 
   // Update Experience data
-
   const updateExperience = (e) => {
     e.preventDefault();
 
@@ -40,7 +39,7 @@ const EditExperience = () => {
       })
       .catch((err) => console.log(err));
 
-    setExperience("");
+      setExperience("");
 
     const timeout = setTimeout(() => {
       navigate(`/admin`);

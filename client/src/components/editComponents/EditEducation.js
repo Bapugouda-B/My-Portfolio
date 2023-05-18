@@ -41,7 +41,7 @@ const EditEducation = () => {
       })
       .catch((err) => console.log(err));
 
-    setEducation("");
+      setEducation("");
 
     const timeout = setTimeout(() => {
       navigate(`/admin`);
