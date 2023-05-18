@@ -25,7 +25,7 @@ const EditAbout = (props) => {
     console.log(about);
   };
 
-  // Update about
+  // Update about data
 
   const updateAbout = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ const EditAbout = (props) => {
 
     const timeout = setTimeout(() => {
       navigate(`/admin`);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   };

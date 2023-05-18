@@ -1,34 +1,26 @@
-import React from "react";
-import "./education.css"
+import React, { useContext } from "react";
+import "./education.css";
+import { DataContext } from "../../context/globalContext.js";
 
 const Education = () => {
-  return <div className="Edu-conatiner">
-    <div className="education">
-      <h2 className="title">
-        Education
-      </h2>
-      <div className="education-detail">
-      <div className="education-info">
-        <p>BE Mechanical Engineering</p>
-      </div>
-      <div className="education-info">
-        <p>BE Mechanical Engineering</p>
-      </div>
-      <div className="education-info">
-        <p>BE Mechanical Engineering</p>
-      </div>
-      <div className="education-info">
-        <p>BE Mechanical Engineering</p>
-      </div>
-      <div className="education-info">
-        <p>BE Mechanical Engineering</p>
-      </div>
-      <div className="education-info">
-        <p>BE Mechanical Engineering</p>
-      </div>
+  const state = useContext(DataContext);
+  const [education] = state.education;
+  // console.log(education);
+
+  return (
+    <div className="Edu-conatiner">
+      <div className="education">
+        <h2 className="title">Education</h2>
+        <div className="education-detail">
+          {education.map((item) => (
+            <div className="education-info" key={item._id}>
+              <p>{item.education}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-    </div>;
+  );
 };
 
 export default Education;

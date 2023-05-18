@@ -18,7 +18,7 @@ app.use(
 
 //------------------connect to mongodb-----------------
 
-const uri = process.env.MONGODB;
+const uri = process.env.MONGODB || 5000;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -37,7 +37,7 @@ app.use("/", require("./routes/experienceRoute.js"));
 app.use("/", require("./routes/projectRoute.js"));
 app.use("/", require("./routes/uploadRoute.js"));
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`listening on port:${port}`);

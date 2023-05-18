@@ -9,8 +9,8 @@ const AboutAdmin = () => {
   const [message, setMessage] = useState("");
   const [messageCond, setMessageCond] = useState(false);
 
+  //Fetching data from Mongodb server
   useEffect(() => {
-    //Fetching data from Mongodb server
     const fetchData = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/about`);
@@ -33,17 +33,19 @@ const AboutAdmin = () => {
     console.log(about);
   };
 
-  //submit about (add item)
+  //submit about data(add item)
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const postAbout = {
+      about,
+    };
+    setAbout("");
     axios
-      .post(`http://localhost:5000/about`, { about: about })
+      .post(`http://localhost:5000/about`, postAbout)
       .then((res) => {
-        setAbout("");
-        console.log(`Added`);
-        // Clear the input field after successful submission
-        const newItem = { about: about };
-        setAboutData((prevData) => [...prevData, newItem]);
+        console.log("Data Successfully submitted");
+        window.location.reload();
       })
 
       .catch((error) => console.log(error));
@@ -56,14 +58,18 @@ const AboutAdmin = () => {
       .then((res) => {
         setMessageCond(true);
         setMessage(`${res.data.msg}`);
-        setTimeout(() => {
+
+        const timeout = setTimeout(() => {
           setMessage("");
           setMessageCond(false);
         }, 2000);
+
+        return () => clearTimeout(timeout);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.log(err));
+
     //Delete about from UI
-    const aboutFilterDel = aboutData.filter((data) => data._id !== id);
+    const aboutFilterDel = aboutData.filter((item) => item._id !== id);
     setAboutData(aboutFilterDel);
   };
 
@@ -85,8 +91,8 @@ const AboutAdmin = () => {
       </div>
       <div className="same-item">
         {aboutData.length > 0 &&
-          aboutData.map((item, index) => (
-            <div className="about-info" key={item._id || index}>
+          aboutData.map((item) => (
+            <div className="about-info" key={item._id}>
               <div className="icons">
                 <Link to={`/editAbout/${item._id}`}>
                   <i className="fas fa-edit"></i>
