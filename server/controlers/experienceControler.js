@@ -1,6 +1,6 @@
 const experienceSchema = require("../models/experienceModel.js");
 
-//get all 'experience' data from mongodb server
+// GET METHOD: get all 'experience' data from mongodb server
 exports.getExperience = async (req, res) => {
   const experience = await experienceSchema.find();
   try {
@@ -10,7 +10,7 @@ exports.getExperience = async (req, res) => {
   }
 };
 
-//add 'experience' user  details to mongodb server
+//POST METHOD: add 'experience' user  details to mongodb server
 exports.addExperience = async (req, res) => {
   try {
     const newExperience = new experienceSchema({

@@ -1,37 +1,182 @@
-import React from "react";
-import "./admin.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import "./admin.css";
+
+const initialState = {
+  product_id: "",
+  title: "",
+  description: "",
+};
 
 const ProjectsAdmin = () => {
+  const [product, setProducts] = useState(initialState);
+  const [images, setImages] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageCond, setMessageCond] = useState(false);
+  const [projectData, setProjectData] = useState([]);
+
+  // Upload image functionality
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+
+    try {
+      const file = e.target.files[0];
+      if (!file) return alert("No filed exists");
+
+      if (file.size > 1024 * 1024) {
+        return alert("Size is too large");
+      }
+
+      if (file.type !== "image/jpeg" && file.type !== "image/png") {
+        return alert("Incorrect file format");
+      }
+
+      let formData = new FormData();
+      formData.append("file", file);
+
+      // Verify the endpoint for uploading the image:
+      const res = await axios.post("/upload", formData, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+
+      setImages(res.data);
+    } catch (error) {
+      console.log(error.response.data.msg);
+    }
+  };
+
+  // Delete Image Function to Delete the Image
+
+  const handleDestroy = async () => {
+    try {
+      await axios.post("/destroy", { public_id: images.public_id });
+      setImages(false);
+    } catch (error) {
+      console.log(error.response.data.msg);
+    }
+  };
+
+  // Handle change inputs
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setProducts({ ...product, [name]: value });
+  };
+
+  // Submitting the form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(`http://localhost:5000/project`, {
+        ...product,
+        images,
+      });
+      setMessage(res.data.msg);
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
+
+      setProducts(initialState);
+      setImages(false);
+      // Fetch updated project data
+      fetchData();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const styleUpload = {
+    display: images ? "block" : "none",
+  };
+
+  // Fetching the project data from the server
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/project`);
+      console.log(res.data);
+      if (Array.isArray(res.data)) {
+        setProjectData(res.data);
+      } else {
+        console.log("Response data is not an array:", res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // delete functionality
+  const deleteProject = (id) => {
+    axios.delete(`http://localhost:5000/project/${id}`).then((res) => {
+      setMessageCond(true);
+      setMessage(res.data.msg);
+
+      const timeout = setTimeout(() => {
+        setMessageCond(false);
+        setMessage("");
+      }, 1000);
+
+      return () => clearTimeout(timeout);
+    });
+
+    // delete from clietn ui
+    const filteredProject = projectData.filter((item) => item._id !== id);
+    setProjectData(filteredProject);
+  };
+
   return (
     <div className="same-component">
       <div className="same-form">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h4>Projects Component</h4>
           <label htmlFor="text">Id</label>
-          <input type="text" name="product_id" required id="product_id" />
-
+          <input
+            type="text"
+            name="product_id"
+            id="product_id"
+            value={product.product_id}
+            onChange={handleChangeInput}
+            required
+          />
           <label htmlFor="text">Title</label>
-          <input type="text" name="title" required id="title" />
-
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={product.title}
+            onChange={handleChangeInput}
+            required
+          />
           <label htmlFor="text">Description</label>
           <textarea
             type="text"
             name="description"
-            required
             id="description"
+            value={product.description}
+            onChange={handleChangeInput}
+            required
             cols="30"
             rows="3"
           />
-
           <div className="upload">
-            <input type="file" name="file" id="file_upload" />
-            <div className="file_img">
-              <img
-                src="https://th.bing.com/th/id/R.41d62814ca1dadddfc751e79bfcef6d1?rik=i%2b7e2rzsN46n0Q&riu=http%3a%2f%2fwonderfulengineering.com%2fwp-content%2fuploads%2f2014%2f01%2fbeautiful-wallpaper-29.jpg&ehk=H4ckWzqVL%2fG9j9pIIJnQZb6%2frR2nO5xS%2bFpwVgSkfYo%3d&risl=&pid=ImgRaw&r=0"
-                alt=""
-              />
-              <span>X</span>
+            <input
+              type="file"
+              name="file"
+              id="file_upload"
+              onChange={handleUpload}
+            />
+            <div className="file_img" style={styleUpload}>
+              <img src={images ? images.url : ""} alt="" />
+
+              <span onClick={handleDestroy}>X</span>
             </div>
           </div>
           <button>Add Item</button>
@@ -39,32 +184,38 @@ const ProjectsAdmin = () => {
       </div>
       <div className="same-item">
         <div className="about-info">
-          <div className="projects-admin">
-            <div className="icons">
-              <Link to={`/editProject`}>
-                <i className="fas fa-edit"></i>
-              </Link>
-              <i className="fas fa-trash"></i>
-            </div>
-            <div className="single-project">
-              <div className="single-project-img">
-                <img
-                  src="https://th.bing.com/th/id/OIP.Rbhl44EQNV98cLJVKE6xUgHaD-?pid=ImgDet&rs=1"
-                  alt=""
-                />
+          {projectData.map((item) => (
+            <div className="projects-admin" key={item._id}>
+              <div className="icons">
+                <Link to={`/editProject/${item._id}`}>
+                  <i className="fas fa-edit"></i>
+                </Link>
+                <i
+                  className="fas fa-trash"
+                  onClick={() => deleteProject(item._id)}
+                ></i>
               </div>
-              <div className="single-project-info">
-                <h3>Tiger</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-                  velit, quisquam autem omnis rem sit eum, nobis maxime
-                  perspiciatis magni, porro pariatur debitis? Tempore, incidunt
-                  quisquam corporis natus cum autem!
-                </p>
+
+              {/* single project */}
+              <div className="single-project">
+                <div className="single-project-img">
+                  <img src={item.images.url} alt="" />
+                </div>
+                <div className="single-project-info">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
               </div>
-              {/* <h3 className="item-delete-tab"></h3> */}
+
+              <h3
+                className={
+                  messageCond ? "new-delete item-delete-tab" : "item-delete-tab"
+                }
+              >
+                {message}
+              </h3>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

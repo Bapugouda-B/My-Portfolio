@@ -5,7 +5,7 @@ import "./experience.css";
 const Experience = () => {
   const state = useContext(DataContext);
   const [experience] = state.experience;
-  // console.log(experience);
+  console.log(experience);
 
   return (
     <div className="experience-container">

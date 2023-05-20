@@ -9,21 +9,21 @@ const EducationAdmin = () => {
   const [message, setMessage] = useState("");
   const [messageCond, setMessageCond] = useState(false);
 
-  useEffect(() => {
-    //fetching data
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/education`);
-        console.log(res.data);
-        if (Array.isArray(res.data)) {
-          setEducationData(res.data);
-        } else {
-          console.log("Response data is not an array:", res.data);
-        }
-      } catch (error) {
-        console.log(error);
+  //Fetching data
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/education`);
+      console.log(res.data);
+      if (Array.isArray(res.data)) {
+        setEducationData(res.data);
+      } else {
+        console.log("Response data is not an array:", res.data);
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -37,15 +37,16 @@ const EducationAdmin = () => {
     e.preventDefault();
 
     const postEducation = {
-      education
-   }
-   setEducation("");
+      education,
+    };
+    setEducation("");
 
     axios
       .post(`http://localhost:5000/education`, postEducation)
       .then((res) => {
+        fetchData();
+
         console.log(`Added`);
-        window.location.reload();
       })
 
       .catch((error) => console.log(error));
@@ -61,16 +62,15 @@ const EducationAdmin = () => {
 
         setMessage(`${res.data.msg}`);
 
-        const timeout=  setTimeout(()=>{
-          setMessage('');
+        const timeout = setTimeout(() => {
+          setMessage("");
           setMessageCond(false);
-   
-       },500)
+        }, 1000);
+        fetchData();
 
-       return ()=>clearTimeout(timeout);
-
-
-   }).catch(err=>console.log(err))
+        return () => clearTimeout(timeout);
+      })
+      .catch((err) => console.log(err));
     //Delete education data from UI
     const educationFilterDel = educationData.filter((item) => item._id !== id);
 

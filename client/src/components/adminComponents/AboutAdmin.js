@@ -10,20 +10,20 @@ const AboutAdmin = () => {
   const [messageCond, setMessageCond] = useState(false);
 
   //Fetching data from Mongodb server
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/about`);
-        console.log(res.data);
-        if (Array.isArray(res.data)) {
-          setAboutData(res.data);
-        } else {
-          console.log("Response data is not an array:", res.data);
-        }
-      } catch (error) {
-        console.log(error);
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/about`);
+      console.log(res.data);
+      if (Array.isArray(res.data)) {
+        setAboutData(res.data);
+      } else {
+        console.log("Response data is not an array:", res.data);
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -44,8 +44,8 @@ const AboutAdmin = () => {
     axios
       .post(`http://localhost:5000/about`, postAbout)
       .then((res) => {
+        fetchData();
         console.log("Data Successfully submitted");
-        window.location.reload();
       })
 
       .catch((error) => console.log(error));
@@ -60,10 +60,9 @@ const AboutAdmin = () => {
         setMessage(`${res.data.msg}`);
 
         const timeout = setTimeout(() => {
-          setMessage("");
           setMessageCond(false);
-        }, 2000);
-
+          setMessage("");
+        }, 1000);
         return () => clearTimeout(timeout);
       })
       .catch((err) => console.log(err));

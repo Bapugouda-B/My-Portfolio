@@ -1,69 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../../context/globalContext.js";
 import "./projects.css";
-import Image from "../../../images/img.jpg";
 
 const Projects = () => {
+  const state = useContext(DataContext);
+  const [projects] = state.projects
+  console.log(projects);
+
   return (
     <div className="project-container">
       <div className="projects">
         <h2 className="title">Projects</h2>
-        <div className="projects-detail">
-          <div className="project-info">
-            <div className="project-img">
-              <img src={Image} alt="" />
+        <div className="projects-detail" >
+          {projects.map((item) => (
+            <div className="project-info" key={item._id}>
+              <div className="project-img">
+                <img src={item.images.url} alt="" />
+              </div>
+              <div className="project-name">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
             </div>
-            <div className="project-name">
-              <h3>Flashcard Generator</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                natus laudantium quidem, deleniti, voluptates aperiam quo ab
-                dignissimos provident excepturi harum reiciendis atque
-                architecto? Unde eos ducimus molestias quisquam nisi.
-              </p>
-            </div>
-          </div>
-          <div className="project-info">
-            <div className="project-img">
-              <img src={Image} alt="" />
-            </div>
-            <div className="project-name">
-              <h3>Flashcard Generator</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                natus laudantium quidem, deleniti, voluptates aperiam quo ab
-                dignissimos provident excepturi harum reiciendis atque
-                architecto? Unde eos ducimus molestias quisquam nisi.
-              </p>
-            </div>
-          </div>
-          <div className="project-info">
-            <div className="project-img">
-              <img src={Image} alt="" />
-            </div>
-            <div className="project-name">
-              <h3>Flashcard Generator</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                natus laudantium quidem, deleniti, voluptates aperiam quo ab
-                dignissimos provident excepturi harum reiciendis atque
-                architecto? Unde eos ducimus molestias quisquam nisi.
-              </p>
-            </div>
-          </div>
-          <div className="project-info">
-            <div className="project-img">
-              <img src={Image} alt="" />
-            </div>
-            <div className="project-name">
-              <h3>Flashcard Generator</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                natus laudantium quidem, deleniti, voluptates aperiam quo ab
-                dignissimos provident excepturi harum reiciendis atque
-                architecto? Unde eos ducimus molestias quisquam nisi.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

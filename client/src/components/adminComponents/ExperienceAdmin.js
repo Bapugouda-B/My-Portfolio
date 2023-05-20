@@ -9,21 +9,21 @@ const ExperienceAdmin = () => {
   const [message, setMessage] = useState("");
   const [messageCond, setMessageCond] = useState(false);
 
-  useEffect(() => {
-    //Fetching experinece data from mongodb server
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/experience`);
-        console.log(res.experience);
-        if (Array.isArray(res.data)) {
-          setExperienceData(res.data);
-        } else {
-          console.log("Response data is not an array:", res.data);
-        }
-      } catch (error) {
-        console.log(error);
+  //Fetching experinece data from mongodb server
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/experience`);
+      console.log(res.data);
+      if (Array.isArray(res.data)) {
+        setExperienceData(res.data);
+      } else {
+        console.log("Response data is not an array:", res.data);
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -42,8 +42,9 @@ const ExperienceAdmin = () => {
     axios
       .post(`http://localhost:5000/experience`, postExperience)
       .then((res) => {
+        fetchData();
+
         console.log(`Added`);
-        window.location.reload();
       })
 
       .catch((error) => console.log(error));
@@ -60,10 +61,11 @@ const ExperienceAdmin = () => {
         setMessage(`${res.data.msg}`);
 
         const timeout = setTimeout(() => {
-          setMessage("");
           setMessageCond(false);
-        }, 500);
+          setMessage("");
+        }, 1000);
 
+        fetchData();
         return () => clearTimeout(timeout);
       })
       .catch((err) => console.log(err));

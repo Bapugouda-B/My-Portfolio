@@ -45,7 +45,7 @@ router.post("/upload", (req, res) => {
 });
 
 // Delete Method : Deleting Images from Cloudinary  Storage
-router.post("/delete", (req, res) => {
+router.post("/destroy", (req, res) => {
   const { public_id } = req.body;
   try {
     if (!public_id) {

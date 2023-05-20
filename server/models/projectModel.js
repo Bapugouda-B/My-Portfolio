@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const projectSchema = new mongoose.Schema({
-  project_id: {
+  product_id: {
     type: String,
     unique: true,
-    require: true,
+    required:true,
   },
   title: {
     type: String,
@@ -12,11 +12,11 @@ const projectSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    require: true,
+    required: true,
   },
   images: {
     type: Object,
-    require: true,
+    required: true,
   },
 });
 
