@@ -9,7 +9,7 @@ const EditExperience = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // Getting the specific ID
+  // Getting the specific ID data from the server
   useEffect(() => {
     axios
       .get(`http://localhost:5000/experience/${id}`)

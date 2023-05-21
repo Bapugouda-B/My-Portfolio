@@ -1,21 +1,142 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Edit.css";
-import { Link } from "react-router-dom";
+
+const initialState = {
+  product_id: "",
+  title: "",
+  description: "",
+};
 
 const EditProjects = () => {
+  const [project, setProject] = useState(initialState);
+  const [images, setImages] = useState(false);
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  // Upload image functionality
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+
+    try {
+      const file = e.target.files[0];
+      if (!file) return alert("No filed exists");
+
+      if (file.size > 1024 * 1024) {
+        return alert("Size is too large");
+      }
+
+      if (file.type !== "image/jpeg" && file.type !== "image/png") {
+        return alert("Incorrect file format");
+      }
+
+      let formData = new FormData();
+      formData.append("file", file);
+
+      // Verify the endpoint for uploading the image:
+      const res = await axios.post("/upload", formData, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+
+      setImages(res.data);
+    } catch (error) {
+      console.log(error.response.data.msg);
+    }
+  };
+
+  // Delete Image Function to Delete the Image
+
+  const handleDestroy = async () => {
+    try {
+      await axios.post("/destroy", { public_id: images.public_id });
+      setImages(false);
+    } catch (error) {
+      console.log(error.response.data.msg);
+    }
+  };
+
+  // Handle events
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setProject({ ...project, [name]: value });
+  };
+
+  // Getting Specidil Data by ID
+
+  useEffect(() => {
+    axios
+      .get(`/project/${id}`)
+
+      .then((res) => {
+        console.log(res.data);
+        setProject({
+          product_id: res.data.product_id,
+          title: res.data.title,
+          description: res.data.description,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      axios
+        .put(`http://localhost:5000/project/update/${id}`, {
+          ...project,
+          images,
+        })
+        .then((res) => {
+          setMessage(res.data.msg);
+        });
+    } catch (err) {
+      console.error(err);
+    }
+    setProject("");
+    const timeout = setTimeout(() => {
+      navigate(`/admin`);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  };
+
+  const styleUpload = {
+    display: images ? "block" : "none",
+  };
+
   return (
     <div className="edit">
       <div className="main-container">
         <div className="same-component">
           <div className="same-form">
-            <form>
-              <h3 className="updated">Updated</h3>
+            <form onSubmit={handleSubmit}>
+              <h3 className="updated">{message}</h3>
               <h4>Projects Component</h4>
               <label htmlFor="text">Id</label>
-              <input type="text" name="product_id" required id="product_id" />
+              <input
+                type="text"
+                name="product_id"
+                required
+                id="product_id"
+                value={project.product_id}
+                onChange={handleChangeInput}
+              />
 
               <label htmlFor="text">Title</label>
-              <input type="text" name="title" required id="title" />
+              <input
+                type="text"
+                name="title"
+                required
+                id="title"
+                value={project.title}
+                onChange={handleChangeInput}
+              />
 
               <label htmlFor="text">Description</label>
               <textarea
@@ -23,18 +144,23 @@ const EditProjects = () => {
                 name="description"
                 required
                 id="description"
+                value={project.description}
+                onChange={handleChangeInput}
                 cols="30"
                 rows="3"
               />
 
               <div className="upload">
-                <input type="file" name="file" id="file_upload" />
-                <div className="file_img">
-                  <img
-                    src="https://th.bing.com/th/id/R.41d62814ca1dadddfc751e79bfcef6d1?rik=i%2b7e2rzsN46n0Q&riu=http%3a%2f%2fwonderfulengineering.com%2fwp-content%2fuploads%2f2014%2f01%2fbeautiful-wallpaper-29.jpg&ehk=H4ckWzqVL%2fG9j9pIIJnQZb6%2frR2nO5xS%2bFpwVgSkfYo%3d&risl=&pid=ImgRaw&r=0"
-                    alt=""
-                  />
-                  <span>X</span>
+                <input
+                  type="file"
+                  name="file"
+                  id="file_upload"
+                  onChange={handleUpload}
+                  required
+                />
+                <div className="file_img" style={styleUpload}>
+                  <img src={images ? images.url : ""} alt="" />
+                  <span onClick={handleDestroy}>X</span>
                 </div>
               </div>
               <div className="btns">
