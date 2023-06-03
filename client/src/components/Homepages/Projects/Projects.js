@@ -4,14 +4,14 @@ import "./projects.css";
 
 const Projects = () => {
   const state = useContext(DataContext);
-  const [projects] = state.projects
+  const [projects] = state.projects;
   console.log(projects);
 
   return (
     <div className="project-container">
       <div className="projects">
         <h2 className="title">Projects</h2>
-        <div className="projects-detail" >
+        <div className="projects-detail">
           {projects.map((item) => (
             <div className="project-info" key={item._id}>
               <div className="project-img">
@@ -20,6 +20,14 @@ const Projects = () => {
               <div className="project-name">
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
+              </div>
+              <div className="project-icons">
+                <a href="https://github.com/Bapugouda-B" target="_blank"  rel="noopener noreferrer">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                {/* <a href="/">
+                  <i class="fas fa-globe"></i>
+                </a> */}
               </div>
             </div>
           ))}

@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <React.Fragment>
       <div className="main-title">
-        <h2 className="title contact-title">Footer</h2>
+        {/* <h2 className="title contact-title">Footer</h2> */}
       </div>
       <div className="main-contact">
         <div className="contact">
@@ -55,30 +55,30 @@ const Footer = () => {
               <h3>Media</h3>
               <div className="contact-media">
                 <li>
-                  <a href="/">
-                    <i className="fab fa-youtube-square"></i>LinkedIn
+                  <a href="https://github.com/Bapugouda-B" target="_blank"  rel="noopener noreferrer">
+                    <i className="fab fa-github-square" style={{color:"#00405d"}}></i>Github
                   </a>
                 </li>
                 <li>
-                  <a href="/">
-                    <i className="fab fa-youtube-square"></i>LinkedIn
+                  <a href="https://www.facebook.com/profile.php?id=100003105229195" target="_blank"  rel="noopener noreferrer" >
+                    <i className="fab fa-facebook-square" style={{color:"#3b5998"}}></i>Facebook
                   </a>
                 </li>
                 <li>
-                  <a href="/">
-                    <i className="fab fa-facebook-square"></i>Facebook
+                  <a href="https://twitter.com/ImBapu12" target="_blank"  rel="noopener noreferrer">
+                    <i className="fab fa-twitter-square" style={{color:"#55acee"}}></i>Twitter
                   </a>
                 </li>
                 <li>
-                  <a href="/">
-                    <i className="fab fa-linkedin"></i>LinkedIn
+                  <a href="https://www.linkedin.com/in/bapu12/" target="_blank"  rel="noopener noreferrer">
+                    <i className="fab fa-linkedin" style={{color:"#0077b5"}}></i>LinkedIn
                   </a>
                 </li>
               </div>
             </div>
           </div>
           <div className="footer">
-            <p>Designed and created by Bapu</p>
+            <p>Designed and created © 2023 by Bapu </p>
           </div>
         </div>
       </div>

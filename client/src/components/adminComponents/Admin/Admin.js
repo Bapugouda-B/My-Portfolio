@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import AboutAdmin from "../AboutAdmin.js";
 import EducationAdmin from "../EducationAdmin.js";
 import ProjectsAdmin from "../ProjectsAdmin.js";

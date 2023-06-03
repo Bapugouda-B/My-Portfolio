@@ -1,6 +1,7 @@
+
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./admin.css";
 
 const initialState = {
@@ -33,6 +34,8 @@ const ProjectsAdmin = () => {
         return alert("Incorrect file format");
       }
 
+      
+
       let formData = new FormData();
       formData.append("file", file);
 
@@ -43,7 +46,7 @@ const ProjectsAdmin = () => {
 
       setImages(res.data);
     } catch (error) {
-      console.log(error.response.data.msg);
+      console.log(error);
     }
   };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import "./Edit.css";
 
 const initialState = {
@@ -48,7 +48,6 @@ const EditProjects = () => {
   };
 
   // Delete Image Function to Delete the Image
-
   const handleDestroy = async () => {
     try {
       await axios.post("/destroy", { public_id: images.public_id });
@@ -65,7 +64,7 @@ const EditProjects = () => {
     setProject({ ...project, [name]: value });
   };
 
-  // Getting Specidil Data by ID
+  // Getting Specifil Data by ID
 
   useEffect(() => {
     axios
@@ -78,6 +77,8 @@ const EditProjects = () => {
           title: res.data.title,
           description: res.data.description,
         });
+        // Set the images state with the retrieved images
+        setImages(res.data.images);
       })
       .catch((error) => {
         console.log(error);
@@ -150,19 +151,25 @@ const EditProjects = () => {
                 rows="3"
               />
 
-              <div className="upload">
-                <input
-                  type="file"
-                  name="file"
-                  id="file_upload"
-                  onChange={handleUpload}
-                  required
-                />
-                <div className="file_img" style={styleUpload}>
-                  <img src={images ? images.url : ""} alt="" />
-                  <span onClick={handleDestroy}>X</span>
-                </div>
+              <div className="upload" style={styleUpload}>
+                {images && (
+                  <div className="file_img">
+                    <img src={images.url} alt="" />
+                    <span onClick={handleDestroy}>X</span>
+                  </div>
+                )}
               </div>
+              {!images && (
+                <div className="upload">
+                  <input
+                    type="file"
+                    name="file"
+                    id="file_upload"
+                    onChange={handleUpload}
+                    required
+                  />
+                </div>
+              )}
               <div className="btns">
                 <button>Update</button>
                 <Link to="/admin">

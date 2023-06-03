@@ -18,7 +18,7 @@ app.use(
 
 //------------------connect to mongodb-----------------
 
-const uri = process.env.MONGODB || 5000;
+const uri = process.env.MONGODB ;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -37,8 +37,15 @@ app.use("/", require("./routes/experienceRoute.js"));
 app.use("/", require("./routes/projectRoute.js"));
 app.use("/", require("./routes/uploadRoute.js"));
 
-const port = process.env.PORT;
+PORT = process.env.PORT || 5000;
 
-app.listen(port, () => {
-  console.log(`listening on port:${port}`);
+// static assets
+if(process.env.NODE_ENV==='production'){
+  app.use(express.static('client/build'));
+  app.get('*', (req, res)=>res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')))
+}
+
+
+app.listen(PORT, () => {
+  console.log(`listening on port:${PORT}`);
 });
