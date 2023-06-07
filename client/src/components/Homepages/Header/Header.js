@@ -5,6 +5,13 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import particlesConfig from "./particleConfig.js";
 import Typewriter from "typewriter-effect";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinkedin,
+  faGithub,
+  faTwitter,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Header = () => {
   const particlesInit = (engine) => {
@@ -18,41 +25,79 @@ const Header = () => {
         <div className="myname">
           <h1>
             <Typewriter
-             className="typewriter-text"
+              className="typewriter-text"
               options={{
-                strings: [
-                  "Welcome! My name is Bapugouda",
-                  "I'm a Full Stack Developer",
-                ],
+                strings: ["Welcome!"],
                 autoStart: true,
                 loop: true,
               }}
             />
           </h1>
         </div>
-        <div className="cv">
-          <span>
-            <b>Download CV : </b>
-            <a href="a" target="_blank" rel="noreferrel">
-              <i className="fas fa-file-pdf"></i>
-            </a>
-          </span>
-        </div>
       </div>
       <div className="personalInfo">
         <div className="personalInfo-container">
           <div className="personalDetails">
-            <div className="info">
-              <label htmlFor="name">Fullname</label>
-              <h4>Bapugouda B</h4>
+            <div className="personal-content">
+              <div className="content-1">
+                <h5 style={{ color: "white" }}>Hey , I'm </h5>
+                <h1>
+                  Bapugouda <span> Biradar</span>
+                </h1>
+                <p className="role">
+                  <span>Full stack developer</span>
+                </p>
+              </div>
+              <div className="content-2">
+                <p className="tag-line">
+                  A Full Stack Developer specializes in creating versatile web
+                  solutions, turning visions into dynamic websites.
+                </p>
+              </div>
             </div>
-            <div className="info">
-              <label htmlFor="occupation">Occupation</label>
-              <h4>Full Stack Developer</h4>
+            <div className="cv-btn">
+              <a
+                href="https://drive.google.com/u/0/uc?id=1xpbB2z-oNG7qxf9DE7g4oi_m-OqXdceA&export=download"
+                download
+                class="download-btn"
+              >
+                <i class="fas fa-file-download"></i> Resume
+              </a>
             </div>
-            <div className="info">
-              <label htmlFor="email">E-mail</label>
-              <h4>rajjdanush12@gmail.com</h4>
+
+            <div className="social-icons">
+              <a
+                href="https://www.linkedin.com/in/bapu12/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-linkedin"
+              >
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+              <a
+                href="https://github.com/Bapugouda-B"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-github"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+              <a
+                href="https://twitter.com/ImBapu12"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-twitter"
+              >
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+              <a
+                href="https://www.instagram.com/rajjdanushh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-instagram"
+              >
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
             </div>
           </div>
           <div className="my-img">

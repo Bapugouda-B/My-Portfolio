@@ -1,5 +1,8 @@
+
 .experience{
     margin: 20px;
+    max-width: 1200px;
+
 }
 
 .experience-info p{
@@ -14,6 +17,10 @@
 }
 
 @media screen and (min-width: 860px) {
+    .experience{
+margin: 0 auto;
+
+    }
     .experience-detail{
         display: flex;
         flex-wrap: wrap;
