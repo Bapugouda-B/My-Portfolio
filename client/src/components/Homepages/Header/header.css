@@ -25,7 +25,7 @@
 }
 
 .myname h1 {
-  color: rgb(241, 240, 240);
+  color: gainsboro;
   letter-spacing: 0.1rem;
   font-style: italic;
   text-shadow: 1px 1px 2px black, 0 0 1em rgb(21, 164, 221),
@@ -35,7 +35,10 @@
 .personalInfo {
   position: relative;
   margin: 0 auto;
-  margin-top: -150px;
+  margin-top: -180px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 .personalDetails {
@@ -44,44 +47,45 @@
   justify-content: space-between;
 }
 
-
-
 .personalInfo-container {
   background-color: rgb(6, 6, 6);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
- 
 }
 
 .personal-content {
-  padding: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 
-.personal-content h1 {
+.content-1 {
+  margin: 0 auto;
+  width: max-content;
+}
+
+.content-1 h1 {
+  display: inline;
   letter-spacing: 1px;
-  font-size: 35px;
+  font-size: 34px;
   color: yellow;
   font-family: Helvetica;
+  overflow: ellipsis;
 }
 
-.personal-content .role {
+.content-1 .role {
   color: #fff;
   display: flex;
   justify-content: flex-end;
-  margin-right: 14px;
   font-family: "Lucida Sans";
 }
 
-.personal-content .role span {
-  padding: 2px 0;
-  font-style: italic;
+.content-1 .role span {
+  padding: 4px 0;
   font-size: 14px;
   border-bottom: 1.5px solid green;
-}
-
-.personal-content span {
-  color: #fff;
+  color: gainsboro;
 }
 
 .tag-line {
@@ -90,16 +94,15 @@
   width: 80%;
   margin: 20px auto 0 auto;
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
   line-height: 1.2;
 }
 
-
-.cv-btn{
+.cv-btn-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .download-btn {
@@ -117,7 +120,6 @@
 .download-btn:hover {
   background-color: #0056b3;
 }
-
 
 /* ------------- social icons -------------- */
 
@@ -155,8 +157,6 @@
   color: #c13584; /* Instagram color */
 }
 
-
-
 /* ------------- social icons end-------------- */
 
 .my-img {
@@ -175,15 +175,37 @@
   }
 
   .personalInfo {
-    max-width: 650px;
-    margin-top: -160px;
+    max-width: 750px;
+    margin-top: -220px;
   }
+
+  .content-1 h1 {
+    display: inline;
+    font-size: 65px;
+  }
+
+  .content-1 h5 {
+    font-size: 20px;
+  }
+
+  .content-1 .role span {
+    font-size: 20px;
+  }
+
+  .tag-line {
+    font-size: 24px;
+  }
+
+  .download-btn {
+    padding: 10px 15px;
+  }
+
   .social-icons a {
-    font-size: 25px;
+    font-size: 30px;
+    margin: 0 20px;
   }
- 
+
   .my-img {
-    flex: 0 0 calc(36% - 10px);
     display: block;
     align-self: center;
   }
@@ -199,11 +221,11 @@
     position: relative;
     padding: 5px;
   }
-  
+
   .personalInfo {
     max-width: 900px;
     width: 100%;
-    margin-top: -140px;
+    margin-top: -180px;
   }
 
   .personalDetails {
@@ -211,11 +233,15 @@
   }
 
   .personal-content h1 {
-    font-size: 55px;
+    font-size: 50px;
+  }
+  .tag-line {
+    color: gainsboro;
+    font-size: 18px;
   }
 
   .my-img {
-    flex: 0 0 calc(36% - 10px);
+    flex: 0 0 calc(38% - 10px);
     display: block;
     align-self: center;
     height: 100%;
@@ -223,5 +249,9 @@
 
   .my-img img {
     height: 100%;
+  }
+
+  .social-icons a{
+    margin-bottom: 10px;
   }
 }

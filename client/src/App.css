@@ -28,8 +28,8 @@ a {
 .title {
   letter-spacing: 0.1rem;
   font-style: italic;
-  border-bottom: 1px dashed rgb(9, 93, 119);
-  color: rgb(9, 93, 119);
+  border-bottom: 1px dashed #B0C4DE;
+  color: #B0C4DE;
   margin: 0 auto;
   margin-bottom: 10px;
   max-width: 1200px;

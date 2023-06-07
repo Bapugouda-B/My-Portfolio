@@ -1,5 +1,5 @@
 .nav-container {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   margin: 0 auto;
   max-width: 1400px;
   position: sticky;
@@ -8,14 +8,14 @@
 }
 
 .nav {
-  max-width: 1200px; 
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .logoBtn {
   display: flex;
-  padding: 5px 10px;
-  border-bottom: 1px solid rgb(168, 186, 186);
+  padding: 5px 20px;
+  border-bottom: 1.5px solid gainsboro;
   align-items: center;
   justify-content: space-between;
 }
@@ -50,7 +50,7 @@
 .bar2,
 .bar3 {
   background-color: lightgray;
-  width: 35px;
+  width: 100%;
   padding: 1px;
   margin: 5px;
   transition: all 0.5s ease-in-out;
@@ -77,10 +77,12 @@
 }
 
 .links {
+  background-color: #1c1c1c;
+
   width: 100%;
   transform: translate(-100%);
   position: fixed;
-  top: 51px;
+  top: 55px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -94,13 +96,14 @@
   width: 100%;
   transform: translate(0%);
   position: fixed;
-  top: 51px;
+  top: 55x;
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 0 25px;
 }
 
-.links li a{
+.links li a {
   display: block;
   padding: 10px;
   color: lightgray;

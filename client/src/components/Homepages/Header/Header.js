@@ -40,12 +40,12 @@ const Header = () => {
           <div className="personalDetails">
             <div className="personal-content">
               <div className="content-1">
-                <h5 style={{ color: "white" }}>Hey , I'm </h5>
+                <h5 style={{ color: "gainsboro" }}>Hey , I'm </h5>
                 <h1>
-                  Bapugouda <span> Biradar</span>
+                  Bapugouda <span style={{color:"gainsboro"}}> Biradar</span>
                 </h1>
                 <p className="role">
-                  <span>Full stack developer</span>
+                 <span>Full stack developer</span> 
                 </p>
               </div>
               <div className="content-2">
@@ -55,13 +55,13 @@ const Header = () => {
                 </p>
               </div>
             </div>
-            <div className="cv-btn">
+            <div className="cv-btn-container">
               <a
                 href="https://drive.google.com/u/0/uc?id=1xpbB2z-oNG7qxf9DE7g4oi_m-OqXdceA&export=download"
                 download
                 class="download-btn"
               >
-                <i class="fas fa-file-download"></i> Resume
+                <i class="fas fa-file-download"></i> Download Resume
               </a>
             </div>
 
