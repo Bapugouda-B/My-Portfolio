@@ -29,7 +29,7 @@ db.on("error", (err) => console.log(err));
 db.once("open", () => console.log("mongodb connected..."));
 
 //----------------------routes------------------------
-app.use("/contact", require("./routes/contactRoute.js"));
+app.use("/email", require("./routes/contactRoute.js"));
 app.use("/user", require("./routes/userRoute.js"));
 app.use("/", require("./routes/educationRoute.js"));
 app.use("/", require("./routes/aboutRoute.js"));
@@ -37,9 +37,22 @@ app.use("/", require("./routes/experienceRoute.js"));
 app.use("/", require("./routes/projectRoute.js"));
 app.use("/", require("./routes/uploadRoute.js"));
 
+//--------------------Error Handling--------------------
+
+// Define a middleware function for handling errors
+app.use((err, req, res, next) => {
+  console.error(err); // Log the error for debugging purposes
+
+  // Send an appropriate response to the client
+  res.status(500).json({
+    error: "Internal Server Error",
+  });
+});
+
+//--------------------Start Server----------------------
 PORT = process.env.PORT || 5000;
 
-// static assets
+// Serve static assets if in production
 if(process.env.NODE_ENV==='production'){
   app.use(express.static('client/build'));
   app.get('*', (req, res)=>res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')))

@@ -4,16 +4,53 @@ import img from "../../../images/img1.jpg";
 import axios from "axios";
 
 const Contact = () => {
-  const [name, setname] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [banner, setBanner] = useState("");
-  const [bool, setBool] = useState(false);
+
+  
+
+
+
+  const sendEmail = async () => {
+    let dataSend = {
+      name: name,
+      email: email,
+      message: message,
+    };
+  
+    try {
+      const response = await axios.post("/email/sendEmail", dataSend, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.status >= 200 && response.status < 300) {
+        alert("Send Successfully !");
+      } else {
+        // Handle non-successful response
+        console.error("Failed to send email. Status:", response.status);
+      }
+    } catch (error) {
+      // Handle request error
+      console.error("Error sending email:", error.message);
+    }
+
+    // Clear form inputs after sending the email
+    setName("");
+    setEmail("");
+    setMessage("");
+  };
+  
+  
 
   // Input Handle
   const handleNameInput = (e) => {
-    setname(e.target.value);
+    setName(e.target.value);
   };
+
   const handleEmailInput = (e) => {
     setEmail(e.target.value);
   };
@@ -22,35 +59,9 @@ const Contact = () => {
     setMessage(e.target.value);
   };
 
-  // Form Submission
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    let data = {
-      name: name,
-      email: email,
-      message: message,
-    };
-
-    setBool(true);
-
-    axios
-      .post(`/`, data)
-      .then((res) => {
-        setBanner(res.data.msg);
-        setBool(false);
-        setTimeout(() => {
-          setBanner("");
-        }, 1000);
-
-        setname("");
-        setEmail("");
-        setMessage("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    e.preventDefault(); // Prevent form submission from refreshing the page
+    sendEmail();
   };
 
   return (
@@ -60,11 +71,11 @@ const Contact = () => {
         <div className="contact-form-detail">
           <div className="contact-form-info">
             <form onSubmit={handleSubmit}>
-              <p>{banner}</p>
+              {/* <p className="banner">{banner}</p> */}
               <label htmlFor="name">Name</label>
               <input
                 type="text"
-                placeholder="import name..."
+                placeholder="Enter name..."
                 required
                 value={name}
                 onChange={handleNameInput}
@@ -72,23 +83,22 @@ const Contact = () => {
               <label htmlFor="email">Email</label>
               <input
                 type="text"
-                placeholder="import email..."
+                placeholder="Enter email..."
                 required
                 value={email}
                 onChange={handleEmailInput}
               />
               <label htmlFor="message">Message</label>
               <textarea
-                type="text"
                 name="message"
-                id=""
-                placeholder="import contact reason..."
+                required
+                placeholder="Enter contact reason..."
                 value={message}
                 onChange={handleMessageInput}
               ></textarea>
               <div className="send-btn">
                 <button type="submit">
-                  Send{bool ? <b className="load"> loading... </b> : ""}
+                  Send
                 </button>
               </div>
             </form>

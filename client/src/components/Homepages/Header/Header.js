@@ -59,9 +59,9 @@ const Header = () => {
               <a
                 href="https://drive.google.com/u/0/uc?id=1xpbB2z-oNG7qxf9DE7g4oi_m-OqXdceA&export=download"
                 download
-                class="download-btn"
+                className="download-btn"
               >
-                <i class="fas fa-file-download"></i> Download Resume
+                <i className="fas fa-file-download"></i> Download Resume
               </a>
             </div>
 

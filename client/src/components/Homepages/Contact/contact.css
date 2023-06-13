@@ -10,7 +10,7 @@
 }
 
 .contact-form-detail {
-  padding: 10px;
+  padding: 10px 0px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column-reverse;
@@ -27,13 +27,13 @@
 
 .contact-form-info form input , .contact-form-info form textarea{
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 10px 8px;
     bottom: 1px solid rgb(40, 185, 185);
 }
 
 .contact-form-info button{
     margin-top: 15px;
-    padding: 5px;
+    padding: 10px;
     background: rgb(19,126,233);
     outline: none;
     border: none;
@@ -83,15 +83,15 @@ button .load img {
   color: green;
 }
 
-@media screen and (min-width: 664px) {
+@media (min-width: 664px) {
   .contact-form-detail {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
   }
   .contact-form-info {
     flex: 0 0 50%;
-    padding: 10px;
+    padding: 10px 0px;
     display: flex;
     flex-direction: column;
   }
@@ -102,9 +102,7 @@ button .load img {
   }
 }
 
-@media screen and (min-width: 864px) {
-
-  
+@media (min-width: 864px) {
     .contact-form-detail {
       display: flex;
       flex-wrap: wrap;
@@ -120,6 +118,5 @@ button .load img {
     }
     .contact-info {
       flex: 0 0 400px;
-     
     }
   }

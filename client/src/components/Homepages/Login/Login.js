@@ -1,43 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./login.css";
 
 // import Register from "../Register/Register.js";
 
 const Login = () => {
   return (
-    <div>
+    <div className="login-body">
       <div className="login-container">
-        <div className="main-container">
-          <h3>Login for admin</h3>
-        </div>
-        <div className="login-center">
-          <form>
-            <p>You Edited It</p>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              placeholder="Import email....."
-              name="email"
-              required
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              placeholder="Import password....."
-              name="password"
-              required
-            />
-            <div className="login-btn">
-              <button type="submit">Login</button>
-              <Link to="">
-                <button>Back to Home</button>
-              </Link>
-            </div>
-          </form>
-        </div>
+        <h2>Login</h2>
+        <form id="login-form">
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Username" required />
+          <label for="password">Password:</label>
+          <input type="password" id="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+          <p className="message" id="error-message">Invalid username or password.</p>
+        </form>
       </div>
-      {/* <Register /> */}
     </div>
   );
 };

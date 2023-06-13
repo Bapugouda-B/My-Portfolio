@@ -5,7 +5,7 @@ import { DataContext } from "../../context/globalContext.js";
 const About = () => {
   const state = useContext(DataContext);
   const [about] = state.about;
-  // console.log(about);
+  console.log(about);
   return (
     <div className="about-container">
       <div className="about">
