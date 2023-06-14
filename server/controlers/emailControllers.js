@@ -181,7 +181,7 @@ const sendEmail = expressAsyncHandler(async (req, res) => {
 
   // Mail options for you
   const adminMailOptions = {
-    from: `${name}`, // User name
+    from: `${name} ${email}`, // User name
     to: process.env.SMTP_MAIL, // Your email address
     subject: "New Contact Form Submission",
     html: adminHtml,

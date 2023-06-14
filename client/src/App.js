@@ -19,6 +19,7 @@ import EditAbout from "./components/editComponents/EditAbout";
 import EditEducation from "./components/editComponents/EditEducation";
 import EditProjects from "./components/editComponents/EditProjects";
 import EditExperience from "./components/editComponents/EditExperience";
+import Register from "./components/Homepages/Register/Register.js";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         />
 
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/editAbout/:id" element={<EditAbout />} />
         <Route path="/editEducation/:id" element={<EditEducation />} />

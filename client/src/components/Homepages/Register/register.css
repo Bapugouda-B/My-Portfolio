@@ -1,0 +1,76 @@
+.register-container {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 300px;
+  border-radius: 5px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.register-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.register-btns button {
+  padding: 12px 20px;
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.message {
+  text-align: center;
+  margin-top: 10px;
+  color: red;
+}
+
+/* Responsive Styles */
+@media screen and (min-width: 576px) {
+  /* Adjust container width for small screens */
+  .register-container {
+    max-width: 500px;
+    margin: 135px auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* Adjust container width for medium screens */
+  .register-container {
+    max-width: 600px;
+    margin: 100px auto;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  /* Adjust container width for large screens */
+  .register-container {
+    max-width: 500px;
+    margin: 100px auto;
+  }
+}

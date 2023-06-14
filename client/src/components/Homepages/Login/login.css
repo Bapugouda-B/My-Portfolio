@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   margin: 135px auto;
+ 
 }
 
 .login-container {
@@ -19,7 +20,6 @@
   width: 100%;
 }
 
-
 .login-container::before,
 .login-container::after {
   content: "";
@@ -32,17 +32,16 @@
 .login-container::before {
   top: -100px;
   left: -100px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   opacity: 0.2;
 }
 
 .login-container::after {
   bottom: -100px;
   right: -100px;
-  background-color: #FFA500;
+  background-color: #ffa500;
   opacity: 0.2;
 }
-
 
 .login-container h2 {
   text-align: center;
@@ -66,10 +65,10 @@
   backdrop-filter: blur(5px);
 }
 
-.login-container button {
-  background-color: #4CAF50;
+.login-container .button1 {
+  background-color: #4caf50;
   color: white;
-  padding: 14px 20px;
+  padding: 10px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -77,8 +76,27 @@
   border-radius: 4px;
 }
 
-.login-container button:hover {
+.login-btns{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.login-container .button1:hover {
   background-color: #45a049;
+}
+
+.login-container .button2 {
+  background-color: blueviolet;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.login-container .button2:hover {
+  background-color: rgb(105, 105, 240);
 }
 
 .login-container .message {
@@ -87,18 +105,18 @@
   margin-top: 10px;
 }
 
-
- @media screen and (max-width: 664px) {
-  .login-container {
-    max-width: 450px;
-  }
-  
+@media (max-width: 476px) {
 .login-body{
   overflow-x: hidden;
+  overflow-y: hidden;
+}
 }
 
-.login-container{
-  overflow: hidden;
-}
+
+/* Responsive Styles */
+@media(min-width: 768px) {
+  .login-container {
+    width: 650px;
+  }
 
 }

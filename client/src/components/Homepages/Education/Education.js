@@ -8,7 +8,7 @@ const Education = () => {
   // console.log(education);
 
   return (
-    <div className="Edu-conatiner">
+    <div className="edu-conatiner">
       <div className="education">
         <h2 className="title">Education</h2>
         <div className="education-detail">

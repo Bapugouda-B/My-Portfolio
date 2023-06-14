@@ -1,5 +1,11 @@
-.about{
+.about-container{
     margin: 20px;
+    
+}
+
+.about{
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .about-info p{
