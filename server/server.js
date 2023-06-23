@@ -20,7 +20,7 @@ app.use(
 
 //------------------connect to mongodb-----------------
 
-const uri = process.env.MONGODB ;
+const uri = process.env.MONGODB;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -29,6 +29,7 @@ mongoose.connect(uri, {
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err));
 db.once("open", () => console.log("mongodb connected..."));
+
 
 //----------------------routes------------------------
 app.use("/email", require("./routes/contactRoute.js"));
