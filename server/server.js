@@ -20,9 +20,9 @@ app.use(
 
 //------------------connect to mongodb-----------------
 
-const uri = process.env.MONGODB;
 
-mongoose.connect(uri, {
+
+mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -53,7 +53,7 @@ app.use((err, req, res, next) => {
 });
 
 //--------------------Start Server----------------------
-PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 
 // static assets for deployment purposes (heroku)
@@ -71,6 +71,6 @@ if(process.env.NODE_ENV==='production'){
 }
 
 
-app.listen(PORT, () => {
-  console.log(`listening on port:${PORT}`);
+app.listen(port, () => {
+  console.log(`listening on port:${port}`);
 });
