@@ -4,14 +4,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 
-const path = require("path");
 
 //initialize
+const path = require("path");
 const app = express();
 
 //middleware
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-const db = mongoose.connection;
+const db=mongoose.connection;
 db.on("error", (err) => console.log(err));
 db.once("open", () => console.log("mongodb connected..."));
 
