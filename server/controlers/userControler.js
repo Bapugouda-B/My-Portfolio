@@ -55,7 +55,7 @@ const userControler = {
   },
 
   //------------------------VERIFY--------------------------
-  verifiedToken: async (req, res) => {
+  verifiedToken: (req, res) => {
     try {
       const token = req.header("Authorization");
       if (!token) return res.send(false);

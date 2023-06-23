@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import Logo from "../../../images/img.jpg";
 import { scroller } from "react-scroll";
+import { DataContext } from "../../context/globalContext.js";
 
 const Navbar = () => {
+const state= useContext(DataContext);
   const [toggle, setToggle] = useState();
+  const [isLogin, setIsLogin] = state.isLogin;
+
 
   const toggleAction = () => {
     setToggle(!toggle);
   };
 
+  //close navbar, if it is opened
   const closeNavbar = () => {
     if (toggle === true) {
       setToggle(false);
     }
+  };
+
+  // clear localstorge- enagle login button
+  const logoutSubmit = () => {
+    localStorage.clear();
+    setIsLogin(false);
   };
 
   const scrollToElement = (element) => {
@@ -30,9 +40,7 @@ const Navbar = () => {
     <div className="nav-container">
       <nav className="nav">
         <div className="logoBtn">
-          <Link to="/">
-            <img src={Logo} alt="" />
-          </Link>
+         
           <div className="btn" onClick={toggleAction}>
             <div className={toggle ? "bar1 animatedBar" : "bar bar1"}></div>
             <div className={toggle ? "bar2 animatedBar" : "bar bar1"}></div>
@@ -63,11 +71,15 @@ const Navbar = () => {
               <Link to="/">Contact</Link>
             </li>
 
-            <li>
-              <Link to="/admin">Admin</Link>
+            <li className={isLogin ? "" : "adminLi"}>
+              <Link to={isLogin ? "/admin/" : "/"}>
+                {isLogin ? <div className="admin"> Admin </div> : ""}
+              </Link>
             </li>
-            <li>
-              <Link to="/login">Login</Link>
+            <li onClick={logoutSubmit}>
+              <Link to={isLogin ? "/" : "/login"}>
+                {isLogin ? "Logout" : "Login"}
+              </Link>
             </li>
           </ul>
         </div>

@@ -7,7 +7,7 @@
 }
 
 #tsparticles {
-  height: 400px;
+  height: 360px;
 }
 
 .particles {
@@ -18,7 +18,7 @@
 .myname {
   color: white;
   position: absolute;
-  top: 6rem;
+  top: 4rem;
   text-align: center;
   left: 18%;
   width: 65%;

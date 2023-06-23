@@ -78,11 +78,10 @@
 
 .links {
   background-color: #1c1c1c;
-
   width: 100%;
   transform: translate(-100%);
   position: fixed;
-  top: 55px;
+  top: 37px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -96,7 +95,7 @@
   width: 100%;
   transform: translate(0%);
   position: fixed;
-  top: 55x;
+  top: 37x;
   bottom: 0;
   left: 0;
   right: 0;

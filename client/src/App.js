@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom"; // Import necessary components from react-router-dom
 import { Element } from "react-scroll";
 
 import "./App.css";
@@ -19,17 +19,20 @@ import EditAbout from "./components/editComponents/EditAbout";
 import EditEducation from "./components/editComponents/EditEducation";
 import EditProjects from "./components/editComponents/EditProjects";
 import EditExperience from "./components/editComponents/EditExperience";
-import Register from "./components/Homepages/Register/Register.js";
+
+import { DataContext } from "./components/context/globalContext.js";
 
 function App() {
+  const state = useContext(DataContext); // Access the state from the DataContext
+  const [isLogin, setIsLogin] = state.isLogin; // Destructure the isLogin state and the setIsLogin function
+
   return (
     <div className="App">
-      <Navbar />
-
-      <Routes>
+      <Navbar /> {/* Render the Navbar component */}
+      <Routes> {/* Define the routes */}
         <Route
           path="/"
-          element={
+          element={ // Render multiple components wrapped in a fragment using React.Fragment (or <>) for the root route ("/")
             <>
               <Element className="Home">
                 <Header />
@@ -58,15 +61,32 @@ function App() {
           }
         />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/login"
+          element={
+            <Login setIsLogin={setIsLogin} /> // Render the Login component and pass setIsLogin function as a prop
+          }
+        />
+
+        {/* Add a protected route for the admin panel */}
+        <Route
+          path="/admin"
+          element={
+            isLogin ? ( // If isLogin is true, render the Admin component
+              <Admin />
+            ) : (
+              // If isLogin is false, redirect to the login page using the Navigate component
+              <Navigate to="/login" />
+            )
+          }
+        />
+
         <Route path="/editAbout/:id" element={<EditAbout />} />
         <Route path="/editEducation/:id" element={<EditEducation />} />
         <Route path="/editProject/:id" element={<EditProjects />} />
         <Route path="/editExperience/:id" element={<EditExperience />} />
       </Routes>
-      <Footer />
+      <Footer /> {/* Render the Footer component */}
     </div>
   );
 }

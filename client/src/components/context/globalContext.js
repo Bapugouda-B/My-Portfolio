@@ -4,10 +4,39 @@ import React, { createContext, useEffect, useState } from "react";
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+  const [isLogin, setIsLoggedIn] = useState(false);
   const [about, setAbout] = useState([]);
   const [education, setEducation] = useState([]);
   const [projects, setProjects] = useState([]);
   const [experience, setExperience] = useState([]);
+
+  //checking token loginUser
+  const checkLogin = async () => {
+    const token = localStorage.getItem("tokensStore");
+    if (token) {
+      const verified = await axios.get(
+        `/user/verify`,
+      {headers: { Authorization: token }}
+      );
+      console.log(verified);
+      setIsLoggedIn(verified.data);
+
+      if (verified.data === false) {
+        return localStorage.clear();
+      } else {
+        setIsLoggedIn(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+try {
+  checkLogin();
+} catch (error) {
+  
+}
+  },[])
+
 
   //Fetching data from mongodb server
   const fetchData = async () => {
@@ -21,11 +50,10 @@ export const DataProvider = ({ children }) => {
     // console.log(Res2.data);
     setEducation(Res2.data);
 
-
-     //..............For Fetching Projects data................
-     const Res3 = await axios.get(`http://localhost:5000/project`);
-     // console.log(Res3.data);
-     setProjects(Res3.data);
+    //..............For Fetching Projects data................
+    const Res3 = await axios.get(`http://localhost:5000/project`);
+    // console.log(Res3.data);
+    setProjects(Res3.data);
 
     //..............For Fetching Experience data................
     const Res4 = await axios.get(`http://localhost:5000/experience`);
@@ -44,7 +72,8 @@ export const DataProvider = ({ children }) => {
     about: [about, setAbout],
     education: [education, setEducation],
     experience: [experience, setExperience],
-    projects: [projects, setProjects]
+    projects: [projects, setProjects],
+    isLogin: [isLogin, setIsLoggedIn],
   };
 
   return <DataContext.Provider value={state}>{children}</DataContext.Provider>;

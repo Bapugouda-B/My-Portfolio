@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
-// import Register from "../Register/Register.js";
+import { DataContext } from "../../context/globalContext.js";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({ email: "", password: "" });
+  const state = useContext(DataContext);
+  const [isLogin, setIsLogin] = state.isLogin;
   const [err, setErr] = useState("");
 
   const onChangeInput = (e) => {
@@ -24,6 +26,10 @@ const Login = () => {
         password: user.password,
       });
       setUser({ email: "", password: "" });
+
+      localStorage.setItem("tokenStore", res.data.token);
+      setIsLogin(true);
+
       setErr(res.data.msg);
       navigate("/admin");
     } catch (err) {
@@ -31,8 +37,26 @@ const Login = () => {
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem("tokenStore");
+    setIsLogin(false);
+  };
+
+  if (isLogin) {
+    return (
+      <div className="login-body">
+        <div className="login-container">
+          <h2>Welcome back!</h2>
+          <p>You are already logged in.</p>
+          <button className="button2" onClick={logout}>
+            Logout
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <>
     <div className="login-body">
       <div className="login-container">
         <h2>Login</h2>
@@ -64,7 +88,6 @@ const Login = () => {
                 Home
               </button>
             </Link>
-        
           </div>
           <p className="message" id="error-message">
             {err}
@@ -72,8 +95,6 @@ const Login = () => {
         </form>
       </div>
     </div>
-      {/* <Register/> */}
-    </>
   );
 };
 

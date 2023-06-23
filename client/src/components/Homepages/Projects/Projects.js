@@ -22,12 +22,13 @@ const Projects = () => {
                 <p>{item.description}</p>
               </div>
               <div className="project-icons">
-                <a href="https://github.com/Bapugouda-B" target="_blank"  rel="noopener noreferrer">
+                <a
+                  href="https://github.com/Bapugouda-B"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i class="fa-brands fa-github"></i>
                 </a>
-                {/* <a href="/">
-                  <i class="fas fa-globe"></i>
-                </a> */}
               </div>
             </div>
           ))}

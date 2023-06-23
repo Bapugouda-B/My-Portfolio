@@ -33,7 +33,7 @@ a {
   margin-bottom: 10px;
   max-width: 1200px;
  display: flex;
- justify-content: start;
+ justify-content: flex-start;
 }
 
 .main-container{

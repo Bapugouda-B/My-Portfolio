@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 
+const path = require("path");
+
 //initialize
 const app = express();
 
@@ -51,6 +53,15 @@ app.use((err, req, res, next) => {
 
 //--------------------Start Server----------------------
 PORT = process.env.PORT || 5000;
+
+
+// static assets for deployment purposes (heroku)
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static("client/buid"));
+  app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "client", "build", "index.html")));
+}
+
+
 
 // Serve static assets if in production
 if(process.env.NODE_ENV==='production'){
