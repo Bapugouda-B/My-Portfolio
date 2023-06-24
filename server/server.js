@@ -21,7 +21,7 @@ app.use(
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 //------------------connect to mongodb-----------------
-
+console.log("MONGODB URI:", process.env.MONGODB);
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
