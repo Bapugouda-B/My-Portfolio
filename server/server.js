@@ -17,13 +17,6 @@ app.use(
   })
 );
 
-// Set CORS headers
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://bapu-portfolio.onrender.com");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 // Serve static files from the client/build directory
 app.use(express.static(path.join(__dirname, "../client/build")));
 
