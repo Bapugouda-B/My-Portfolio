@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://bapu-portfolio-server.render.com',
+      target: 'https://bapu-portfolio-server.onrender.com/',
       changeOrigin: true,
     })
   );
