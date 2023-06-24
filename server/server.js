@@ -22,7 +22,7 @@ app.use(
 
 
 
-mongoose.connect(process.env.MONGODB, {
+mongoose.connect(process.env.MONGODB,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
