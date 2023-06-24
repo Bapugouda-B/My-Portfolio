@@ -27,7 +27,7 @@ const Projects = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i class="fa-brands fa-github"></i>
+                  <i className="fa-brands fa-github"></i>
                 </a>
               </div>
             </div>
