@@ -12,7 +12,7 @@ const EditEducation = () => {
   // Getting the specific ID
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/education/${id}`)
+      .get(`/education/${id}`)
       .then((res) => {
         setEducation(res.data.education);
       })

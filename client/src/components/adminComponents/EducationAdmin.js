@@ -12,7 +12,7 @@ const EducationAdmin = () => {
   //Fetching data
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/education`);
+      const res = await axios.get(`/education`);
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setEducationData(res.data);
@@ -42,7 +42,7 @@ const EducationAdmin = () => {
     setEducation("");
 
     axios
-      .post(`http://localhost:5000/education`, postEducation)
+      .post(`/education`, postEducation)
       .then((res) => {
         fetchData();
 
@@ -55,7 +55,7 @@ const EducationAdmin = () => {
   // Delete Education data
   const deleteEducationData = (id) => {
     axios
-      .delete(`http://localhost:5000/education/${id}`)
+      .delete(`/education/${id}`)
       .then((res) => {
         setMessageCond(true);
         console.log(`${res.data.msg}`);

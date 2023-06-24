@@ -12,7 +12,7 @@ const ExperienceAdmin = () => {
   //Fetching experinece data from mongodb server
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/experience`);
+      const res = await axios.get(`/experience`);
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setExperienceData(res.data);
@@ -40,7 +40,7 @@ const ExperienceAdmin = () => {
     };
     setExperience("");
     axios
-      .post(`http://localhost:5000/experience`, postExperience)
+      .post(`/experience`, postExperience)
       .then((res) => {
         fetchData();
 
@@ -53,7 +53,7 @@ const ExperienceAdmin = () => {
   // Delete Experience data
   const deleteExperienceData = (id) => {
     axios
-      .delete(`http://localhost:5000/experience/${id}`)
+      .delete(`/experience/${id}`)
       .then((res) => {
         setMessageCond(true);
         console.log(`${res.data.msg}`);

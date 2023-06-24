@@ -12,7 +12,7 @@ const EditExperience = () => {
   // Getting the specific ID data from the server
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/experience/${id}`)
+      .get(`/experience/${id}`)
       .then((res) => {
         setExperience(res.data.experience);
       })

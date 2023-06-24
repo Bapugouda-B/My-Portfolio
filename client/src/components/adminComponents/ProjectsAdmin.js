@@ -74,7 +74,7 @@ const ProjectsAdmin = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`http://localhost:5000/project`, {
+      const res = await axios.post(`/project`, {
         ...product,
         images,
       });
@@ -100,7 +100,7 @@ const ProjectsAdmin = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/project`);
+      const res = await axios.get(`/project`);
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setProjectData(res.data);
@@ -118,7 +118,7 @@ const ProjectsAdmin = () => {
 
   // delete functionality
   const deleteProject = (id) => {
-    axios.delete(`http://localhost:5000/project/${id}`).then((res) => {
+    axios.delete(`/project/${id}`).then((res) => {
       setMessageCond(true);
       setMessage(res.data.msg);
 

@@ -41,22 +41,22 @@ try {
   //Fetching data from mongodb server
   const fetchData = async () => {
     //..............For Fetching About data................
-    const Res1 = await axios.get(`http://localhost:5000/about`);
+    const Res1 = await axios.get(`/about`);
     // console.log(Res1.data);
     setAbout(Res1.data);
 
     //..............For Fetching Education data................
-    const Res2 = await axios.get(`http://localhost:5000/education`);
+    const Res2 = await axios.get(`/education`);
     // console.log(Res2.data);
     setEducation(Res2.data);
 
     //..............For Fetching Projects data................
-    const Res3 = await axios.get(`http://localhost:5000/project`);
+    const Res3 = await axios.get(`/project`);
     // console.log(Res3.data);
     setProjects(Res3.data);
 
     //..............For Fetching Experience data................
-    const Res4 = await axios.get(`http://localhost:5000/experience`);
+    const Res4 = await axios.get(`/experience`);
     // console.log(Res4.data);
     setExperience(Res4.data);
   };

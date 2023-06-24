@@ -12,7 +12,7 @@ const AboutAdmin = () => {
   //Fetching data from Mongodb server
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/about`);
+      const res = await axios.get(`/about`);
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setAboutData(res.data);
@@ -42,7 +42,7 @@ const AboutAdmin = () => {
     };
     setAbout("");
     axios
-      .post(`http://localhost:5000/about`, postAbout)
+      .post(`/about`, postAbout)
       .then((res) => {
         fetchData();
         console.log("Data Successfully submitted");

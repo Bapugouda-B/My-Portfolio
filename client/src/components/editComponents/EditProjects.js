@@ -90,7 +90,7 @@ const EditProjects = () => {
 
     try {
       axios
-        .put(`http://localhost:5000/project/update/${id}`, {
+        .put(`/project/update/${id}`, {
           ...project,
           images,
         })
