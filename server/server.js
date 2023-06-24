@@ -3,11 +3,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
-
-
-//initialize
 const path = require("path");
-const app = express();
+
+//initialize express
+const app = express(); 
 
 //middleware
 app.use(cors());
@@ -18,18 +17,17 @@ app.use(
   })
 );
 
+// Serve static files from the client/build directory
+app.use(express.static(path.join(__dirname, "../client/build")));
+
 //------------------connect to mongodb-----------------
 
-
-
-mongoose.connect(process.env.MONGODB,{
+mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
-const db=mongoose.connection;
-db.on("error", (err) => console.log(err));
-db.once("open", () => console.log("mongodb connected..."));
-
+})
+.then(() => console.log("MongoDB connected..."))
+.catch((err) => console.log(err));
 
 //----------------------routes------------------------
 app.use("/email", require("./routes/contactRoute.js"));
@@ -52,24 +50,10 @@ app.use((err, req, res, next) => {
   });
 });
 
+
 //--------------------Start Server----------------------
+
 const port = process.env.PORT || 5000;
-
-
-// static assets for deployment purposes (heroku)
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static("client/buid"));
-  app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "client", "build", "index.html")));
-}
-
-
-
-// Serve static assets if in production
-if(process.env.NODE_ENV==='production'){
-  app.use(express.static('client/build'));
-  app.get('*', (req, res)=>res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')))
-}
-
 
 app.listen(port, () => {
   console.log(`listening on port:${port}`);
