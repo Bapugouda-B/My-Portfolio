@@ -28,6 +28,5 @@
     "nodemon": "^2.0.22",
     "react-router": "^6.11.1",
     "react-router-dom": "^6.11.1"
-  },
-  "description": ""
+  }
 }
