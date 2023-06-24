@@ -21,12 +21,11 @@ app.use(
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 //------------------connect to mongodb-----------------
-console.log("MONGODB URI:", process.env.MONGODB_URI);
-const url = process.env.MONGODB_URI;
+const url = "mongodb+srv://bapu:uQiERWAweDHDI1Lj@portfolio.t7njl0t.mongodb.net/my-portfolio?retryWrites=true&w=majority";
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 15000,
+  serverSelectionTimeoutMS: 30000,
 })
 .then(() => console.log("MongoDB connected..."))
 .catch((err) => console.log(err));
