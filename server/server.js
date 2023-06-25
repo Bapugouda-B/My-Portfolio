@@ -9,7 +9,10 @@ require("dotenv").config();
 const app = express(); 
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  // Update with the appropriate front-end URL
+  origin: ["http://localhost:3000", "http://bapu-portfolio.onrender.com"]
+}));
 
 app.use(express.json());
 app.use(
