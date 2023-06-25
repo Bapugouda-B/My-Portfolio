@@ -41,23 +41,19 @@ try {
   //Fetching data from mongodb server
   const fetchData = async () => {
     //..............For Fetching About data................
-    const Res1 = await axios.get(`/about`);
-    // console.log(Res1.data);
+    const Res1 = await axios.get("/about");
     setAbout(Res1.data);
 
     //..............For Fetching Education data................
-    const Res2 = await axios.get(`/education`);
-    // console.log(Res2.data);
+    const Res2 = await axios.get("/education");
     setEducation(Res2.data);
 
     //..............For Fetching Projects data................
-    const Res3 = await axios.get(`/project`);
-    // console.log(Res3.data);
+    const Res3 = await axios.get("/project");
     setProjects(Res3.data);
 
     //..............For Fetching Experience data................
-    const Res4 = await axios.get(`/experience`);
-    // console.log(Res4.data);
+    const Res4 = await axios.get("/experience");
     setExperience(Res4.data);
   };
   useEffect(() => {
@@ -66,6 +62,7 @@ try {
     } catch (error) {
       console.log(error);
     }
+    
   }, []);
 
   const state = {
