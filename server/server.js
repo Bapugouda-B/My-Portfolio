@@ -11,7 +11,7 @@ const app = express();
 // Middleware
 app.use(cors({
   // Update with the appropriate front-end URL
-  origin: ["http://localhost:3000", "http://bapu-portfolio.onrender.com"]
+  origin: ["https://bapu-portfolio.onrender.com/", "https://localhost:3000"]
 }));
 
 app.use(express.json());

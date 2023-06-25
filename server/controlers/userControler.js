@@ -26,10 +26,11 @@ const userControler = {
     }
   },
 
-  //---------------------LOGIN-------------------------
+  //----------------------------- LOGIN -------------------------------
   loginUser: async (req, res) => {
     try {
       const { email, password } = req.body;
+      
       const user = await userSchema.findOne({ email: email });
       if (!user) {
         return res.status(400).json({ msg: "User does not exist" });
@@ -40,7 +41,7 @@ const userControler = {
         return res.status(400).json({ msg: "Password is incorrect" });
       }
 
-      //if login is successful
+      //If login is successful
       const payload = {
         id: user._id,
         name: user.username,
@@ -54,7 +55,7 @@ const userControler = {
     }
   },
 
-  //------------------------VERIFY--------------------------
+  //---------------------------- VERIFY ------------------------------
   verifiedToken: (req, res) => {
     try {
       const token = req.header("Authorization");
