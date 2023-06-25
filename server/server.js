@@ -1,26 +1,22 @@
-require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
-const path = require("path");
+require("dotenv").config();
 
 // Initialize express
 const app = express(); 
 
 // Middleware
 app.use(cors());
+
 app.use(express.json());
 app.use(
   fileUpload({
     useTempFiles: true,
   })
 );
-
-// Serve static files from the client/build directory
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
 
 //------------------connect to MongoDB-----------------
 const url = "mongodb+srv://bapu:uQiERWAweDHDI1Lj@portfolio.t7njl0t.mongodb.net/my-portfolio?retryWrites=true&w=majority";
