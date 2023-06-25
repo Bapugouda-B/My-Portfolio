@@ -11,7 +11,7 @@ const app = express();
 // Middleware
 app.use(cors({
   // Update with the appropriate front-end URL
-  origin: ["https://bapu-portfolio.onrender.com/", "https://localhost:3000"]
+  origin: ["https://bapu-portfolio.onrender.com", "https://localhost:3000"]
 }));
 
 app.use(express.json());
@@ -50,6 +50,14 @@ app.use((err, req, res, next) => {
   res.status(500).json({
     error: "Internal Server Error",
   });
+});
+
+//--------------------CORS Handling--------------------
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://bapu-portfolio.onrender.com");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
 });
 
 //--------------------Start Server----------------------
