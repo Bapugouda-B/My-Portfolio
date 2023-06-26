@@ -54,11 +54,12 @@ app.use((err, req, res, next) => {
 
 //--------------------CORS Handling--------------------
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://bapu-portfolio.onrender.com");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
+
 
 //--------------------Start Server----------------------
 
