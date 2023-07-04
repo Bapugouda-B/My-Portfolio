@@ -12,7 +12,7 @@ const ExperienceAdmin = () => {
   //Fetching experinece data from mongodb server
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/experience`);
+      const res = await axios.get("https://bapu12-portfolio-api.vercel.app/experience");
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setExperienceData(res.data);
@@ -40,7 +40,7 @@ const ExperienceAdmin = () => {
     };
     setExperience("");
     axios
-      .post(`/experience`, postExperience)
+      .post("https://bapu12-portfolio-api.vercel.app/experience", postExperience)
       .then((res) => {
         fetchData();
 
@@ -53,7 +53,7 @@ const ExperienceAdmin = () => {
   // Delete Experience data
   const deleteExperienceData = (id) => {
     axios
-      .delete(`/experience/${id}`)
+      .delete(`https://bapu12-portfolio-api.vercel.app/experience/${id}`)
       .then((res) => {
         setMessageCond(true);
         console.log(`${res.data.msg}`);

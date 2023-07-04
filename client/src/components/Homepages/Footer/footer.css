@@ -10,36 +10,49 @@
   margin-bottom: 20px;
 }
 
-.contact-center-links h3,
-.contact-center-media h3 {
+.contact-center-links h3 {
   text-align: center;
   letter-spacing: 0.2rem;
   color: lightgray;
-  margin-bottom: 10px;
+ margin-bottom: 10px;
+}
+
+.contact-center-media h3{
+  text-align: center;
+  letter-spacing: 0.2rem;
+  color: lightgray;
+ margin-bottom: 15px;
 }
 
 .contact-links {
-  align-items: center;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .contact-media {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.icon-link li {
+  margin-bottom: 8px;
 }
 
 .contact-links li {
-  margin-bottom: 10px;
+  margin: 2px;
   color: rgb(192, 190, 190);
 }
-
 
 .contact-links li a {
   margin: 0 5px;
   color: rgb(192, 190, 190);
   font-size: 18px;
-  display: inline-block;
   padding: 0 2px;
 }
 
@@ -78,25 +91,30 @@
   .contact-links li {
     margin-bottom: 0;
   }
-  .contact-links,
-  .contact-media {
+  .contact-links {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
+
+  .icon-link {
+    display: flex;
+  }
 }
 
 @media screen and (min-width: 864px) {
-   .contact-media li a i{
+  .contact-media li a i {
     font-size: 24px;
-   }
-
   }
+}
 
-  @media screen and (min-width: 864px) {
-    .contact-center{
-     display: flex;
-     justify-content: space-evenly;
-    }
-    
-   }
+@media screen and (min-width: 864px) {
+  
+  .contact-center {
+    width: 100%;
+  }
+  .contact-media{
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -12,7 +12,7 @@ const EducationAdmin = () => {
   //Fetching data
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/education`);
+      const res = await axios.get("https://bapu12-portfolio-api.vercel.app/education");
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setEducationData(res.data);
@@ -42,7 +42,7 @@ const EducationAdmin = () => {
     setEducation("");
 
     axios
-      .post(`/education`, postEducation)
+      .post("https://bapu12-portfolio-api.vercel.app/education", postEducation)
       .then((res) => {
         fetchData();
 
@@ -55,7 +55,7 @@ const EducationAdmin = () => {
   // Delete Education data
   const deleteEducationData = (id) => {
     axios
-      .delete(`/education/${id}`)
+      .delete(`https://bapu12-portfolio-api.vercel.app/education/${id}`)
       .then((res) => {
         setMessageCond(true);
         console.log(`${res.data.msg}`);

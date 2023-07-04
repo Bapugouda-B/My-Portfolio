@@ -12,7 +12,7 @@ const AboutAdmin = () => {
   //Fetching data from Mongodb server
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/about`);
+      const res = await axios.get("https://bapu12-portfolio-api.vercel.app/about");
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setAboutData(res.data);
@@ -42,7 +42,7 @@ const AboutAdmin = () => {
     };
     setAbout("");
     axios
-      .post(`/about`, postAbout)
+      .post("https://bapu12-portfolio-api.vercel.app/about", postAbout)
       .then((res) => {
         fetchData();
         console.log("Data Successfully submitted");
@@ -54,7 +54,7 @@ const AboutAdmin = () => {
   //Delete About field
   const deleteAbout = (id) => {
     axios
-      .delete(`/about/${id}`)
+      .delete(`https://bapu12-portfolio-api.vercel.app/about/${id}`)
       .then((res) => {
         setMessageCond(true);
         setMessage(`${res.data.msg}`);

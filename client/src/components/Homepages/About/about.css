@@ -9,16 +9,10 @@
 }
 
 .about-info p{
-    text-align: center;
-    font-size: 16px;
+    text-align: justify;
+    font-size: 14px;
     color: gainsboro;
     line-height: 1.5;
     padding-bottom: 6px;
 }
 
-@media (min-width: 960px) {
-    .about-info p{
-        text-align: start;
-
-    }
-}

@@ -40,7 +40,7 @@ const ProjectsAdmin = () => {
       formData.append("file", file);
 
       // Verify the endpoint for uploading the image:
-      const res = await axios.post("/upload", formData, {
+      const res = await axios.post("https://bapu12-portfolio-api.vercel.app/upload", formData, {
         headers: { "content-type": "multipart/form-data" },
       });
 
@@ -54,7 +54,7 @@ const ProjectsAdmin = () => {
 
   const handleDestroy = async () => {
     try {
-      await axios.post("/destroy", { public_id: images.public_id });
+      await axios.post("https://bapu12-portfolio-api.vercel.app/destroy", { public_id: images.public_id });
       setImages(false);
     } catch (error) {
       console.log(error.response.data.msg);
@@ -74,7 +74,7 @@ const ProjectsAdmin = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`/project`, {
+      const res = await axios.post("https://bapu12-portfolio-api.vercel.app/project", {
         ...product,
         images,
       });
@@ -100,7 +100,7 @@ const ProjectsAdmin = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/project`);
+      const res = await axios.get("https://bapu12-portfolio-api.vercel.app/project");
       console.log(res.data);
       if (Array.isArray(res.data)) {
         setProjectData(res.data);
@@ -118,7 +118,7 @@ const ProjectsAdmin = () => {
 
   // delete functionality
   const deleteProject = (id) => {
-    axios.delete(`/project/${id}`).then((res) => {
+    axios.delete(`https://bapu12-portfolio-api.vercel.app/project/${id}`).then((res) => {
       setMessageCond(true);
       setMessage(res.data.msg);
 

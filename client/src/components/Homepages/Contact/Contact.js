@@ -20,7 +20,7 @@ const Contact = () => {
     };
   
     try {
-      const response = await axios.post("/email/sendEmail", dataSend, {
+      const response = await axios.post("https://bapu12-portfolio-api.vercel.app/email/sendEmail", dataSend, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

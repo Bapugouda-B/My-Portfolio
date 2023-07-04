@@ -12,7 +12,7 @@ const EditEducation = () => {
   // Getting the specific ID
   useEffect(() => {
     axios
-      .get(`/education/${id}`)
+      .get(`https://bapu12-portfolio-api.vercel.app/education/${id}`)
       .then((res) => {
         setEducation(res.data.education);
       })
@@ -35,7 +35,7 @@ const EditEducation = () => {
     };
 
     axios
-      .put(`/education/update/${id}`, postEducation)
+      .put(`https://bapu12-portfolio-api.vercel.app/education/update/${id}`, postEducation)
       .then((res) => {
         setMessage(res.data.msg);
       })

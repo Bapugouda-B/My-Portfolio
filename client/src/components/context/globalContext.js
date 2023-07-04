@@ -41,19 +41,19 @@ try {
   //Fetching data from mongodb server
   const fetchData = async () => {
     //..............For Fetching About data................
-    const Res1 = await axios.get("http://localhost:5000/about");
+    const Res1 = await axios.get("https://bapu12-portfolio-api.vercel.app/about");
     setAbout(Res1.data);
 
     //..............For Fetching Education data................
-    const Res2 = await axios.get("http://localhost:5000/education");
+    const Res2 = await axios.get("https://bapu12-portfolio-api.vercel.app/education");
     setEducation(Res2.data);
 
     //..............For Fetching Projects data................
-    const Res3 = await axios.get("http://localhost:5000/project");
+    const Res3 = await axios.get("https://bapu12-portfolio-api.vercel.app/project");
     setProjects(Res3.data);
 
     //..............For Fetching Experience data................
-    const Res4 = await axios.get("http://localhost:5000/experience");
+    const Res4 = await axios.get("https://bapu12-portfolio-api.vercel.app/experience");
     setExperience(Res4.data);
   };
   useEffect(() => {

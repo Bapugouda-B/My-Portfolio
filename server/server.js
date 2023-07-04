@@ -11,7 +11,8 @@ const app = express();
 // Middleware
 app.use(cors({
   // Update with the appropriate front-end URL
-  origin: ["https://bapu-portfolio.onrender.com", "https://localhost:3000"]
+  origin: ["https://bapu-portfolio.onrender.com", "https://bapu12-portfolio.vercel.app"],
+  credentials:true
 }));
 
 app.use(express.json());
@@ -22,7 +23,7 @@ app.use(
 );
 
 //------------------connect to MongoDB-----------------
-const url = "mongodb+srv://bapu:uQiERWAweDHDI1Lj@portfolio.t7njl0t.mongodb.net/my-portfolio?retryWrites=true&w=majority";
+const url = "mongodb+srv://bapu:fwYbViv8Duj7yzjf@portfolio.t7njl0t.mongodb.net/my-portfolio?retryWrites=true&w=majority";
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -54,7 +55,7 @@ app.use((err, req, res, next) => {
 
 //--------------------CORS Handling--------------------
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://bapu-portfolio.onrender.com, https://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", "https://bapu-portfolio.onrender.com, https://bapu12-portfolio.vercel.app");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();

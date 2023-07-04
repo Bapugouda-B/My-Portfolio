@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +8,8 @@
 
 body{
   background-color: #1C1C1C;
+  font-family: Helvetica;
+
 }
 
 .main-container,
@@ -26,9 +30,8 @@ a {
 }
 
 .title {
+  font-size: 20px;
   letter-spacing: 0.1rem;
-  font-style: italic;
-  border-bottom: 1px dashed #B0C4DE;
   color: #B0C4DE;
   margin-bottom: 10px;
   max-width: 1200px;

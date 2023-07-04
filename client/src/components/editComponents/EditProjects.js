@@ -37,9 +37,13 @@ const EditProjects = () => {
       formData.append("file", file);
 
       // Verify the endpoint for uploading the image:
-      const res = await axios.post("/upload", formData, {
-        headers: { "content-type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        "https://bapu12-portfolio-api.vercel.app/upload",
+        formData,
+        {
+          headers: { "content-type": "multipart/form-data" },
+        }
+      );
 
       setImages(res.data);
     } catch (error) {
@@ -50,7 +54,9 @@ const EditProjects = () => {
   // Delete Image Function to Delete the Image
   const handleDestroy = async () => {
     try {
-      await axios.post("/destroy", { public_id: images.public_id });
+      await axios.post("https://bapu12-portfolio-api.vercel.app/destroy", {
+        public_id: images.public_id,
+      });
       setImages(false);
     } catch (error) {
       console.log(error.response.data.msg);
@@ -68,7 +74,7 @@ const EditProjects = () => {
 
   useEffect(() => {
     axios
-      .get(`/project/${id}`)
+      .get(`https://bapu12-portfolio-api.vercel.app/project/${id}`)
 
       .then((res) => {
         console.log(res.data);
@@ -90,7 +96,7 @@ const EditProjects = () => {
 
     try {
       axios
-        .put(`/project/update/${id}`, {
+        .put(`https://bapu12-portfolio-api.vercel.app/project/update/${id}`, {
           ...project,
           images,
         })

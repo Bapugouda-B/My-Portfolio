@@ -12,7 +12,7 @@ const EditExperience = () => {
   // Getting the specific ID data from the server
   useEffect(() => {
     axios
-      .get(`/experience/${id}`)
+      .get(`https://bapu12-portfolio-api.vercel.app/experience/${id}`)
       .then((res) => {
         setExperience(res.data.experience);
       })
@@ -33,7 +33,7 @@ const EditExperience = () => {
     };
 
     axios
-      .put(`/experience/update/${id}`, postExperience)
+      .put(`https://bapu12-portfolio-api.vercel.app/experience/update/${id}`, postExperience)
       .then((res) => {
         setMessage(res.data.msg);
       })

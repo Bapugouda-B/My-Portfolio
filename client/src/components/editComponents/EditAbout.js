@@ -12,7 +12,7 @@ const EditAbout = (props) => {
   // getting the specific id
   useEffect(() => {
     axios
-      .get(`/about/${id}`)
+      .get(`https://bapu12-portfolio-api.vercel.app/about/${id}`)
       .then((res) => {
         setAbout(res.data.about);
       })
@@ -35,7 +35,7 @@ const EditAbout = (props) => {
     };
 
     axios
-      .put(`/about/update/${id}`, postAbout)
+      .put(`https://bapu12-portfolio-api.vercel.app/about/update/${id}`, postAbout)
       .then((res) => {
         setMessage(res.data.msg);
       })
